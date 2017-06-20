@@ -1,0 +1,136 @@
+﻿@model IEnumerable<WebApplication1.Models.Sample>
+
+
+<style>
+	#ChangeThisIDFirst .ControlNumber-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .FileName-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .Sender-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .Receiver-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .FilePath-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .DateOfCreation-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .AgeInDays-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .Status-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .IncomeFileLoggerID-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .FileKey-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .ApplicaionOrGroupName-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .RegisterUserName-css{
+		width:10%;
+	}
+	#ChangeThisIDFirst .FileType-css{
+		width:10%;
+	}
+</style>
+
+<div>
+<table id="ChangeThisIDFirst" class="table table-striped table-hover table-responsive custom-thead-back custom-thead-font custom-tbody custom-table-striped pt-table ">
+ <thead class="theme_thead custom-thead-back theme1_table custom-thead-font custom-tbody">
+	<tr>
+		<th class="ControlNumber-css">
+			@Html.DisplayNameFor(model => model.ControlNumber)
+		</th>
+		<th class="FileName-css">
+			@Html.DisplayNameFor(model => model.FileName)
+		</th>
+		<th class="Sender-css">
+			@Html.DisplayNameFor(model => model.Sender)
+		</th>
+		<th class="Receiver-css">
+			@Html.DisplayNameFor(model => model.Receiver)
+		</th>
+		<th class="FilePath-css">
+			@Html.DisplayNameFor(model => model.FilePath)
+		</th>
+		<th class="DateOfCreation-css">
+			@Html.DisplayNameFor(model => model.DateOfCreation)
+		</th>
+		<th class="AgeInDays-css">
+			@Html.DisplayNameFor(model => model.AgeInDays)
+		</th>
+		<th class="Status-css">
+			@Html.DisplayNameFor(model => model.Status)
+		</th>
+		<th class="IncomeFileLoggerID-css">
+			@Html.DisplayNameFor(model => model.IncomeFileLoggerID)
+		</th>
+		<th class="FileKey-css">
+			@Html.DisplayNameFor(model => model.FileKey)
+		</th>
+		<th class="ApplicaionOrGroupName-css">
+			@Html.DisplayNameFor(model => model.ApplicaionOrGroupName)
+		</th>
+		<th class="RegisterUserName-css">
+			@Html.DisplayNameFor(model => model.RegisterUserName)
+		</th>
+		<th class="FileType-css">
+			@Html.DisplayNameFor(model => model.FileType)
+		</th>
+		<th class="Action-css"></th>
+	</tr>
+	</thead>
+	<tbody>
+		@Html.Partial("", Model)
+	</tbody>
+
+</table>
+</div>
+<script>
+var changethisVar = function () {
+	$('#abcd').prtGrid({
+		url: "callURLLinkGoesHere",
+		dataLength: 50,
+		columns: [		
+					{ type: 'text', name: 'ControlNumber', text: 'ControlNumber', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'FileName', text: 'FileName', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'Sender', text: 'Sender', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'Receiver', text: 'Receiver', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'FilePath', text: 'FilePath', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'DateOfCreation', text: 'DateOfCreation', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'AgeInDays', text: 'AgeInDays', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'Status', text: 'Status', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'IncomeFileLoggerID', text: 'IncomeFileLoggerID', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'FileKey', text: 'FileKey', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'ApplicaionOrGroupName', text: 'ApplicaionOrGroupName', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'RegisterUserName', text: 'RegisterUserName', sortable: { isSort: false, defaultSort: null } },
+
+					{ type: 'text', name: 'FileType', text: 'FileType', sortable: { isSort: false, defaultSort: null } },
+
+				{ type: 'none', name: '', text: '', sortable: { isSort: false }} 
+		]
+	});
+};
+</script>
+
+

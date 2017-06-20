@@ -1,0 +1,126 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ include file="Imports.include.t4" #>
+@model IEnumerable<#= "<" + ViewDataTypeName + ">" #>
+<#
+// The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
+if(IsPartialView) {
+#>
+
+<#
+} else if(IsLayoutPageSelected) {
+#>
+
+@{
+	ViewBag.Title = "<#= ViewName#>";
+<#
+if (!String.IsNullOrEmpty(LayoutPageFile)) {
+#>
+	Layout = "<#= LayoutPageFile#>";
+<#
+}
+#>
+}
+
+<h2><#= ViewName#></h2>
+
+<#
+} else {
+#>
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title><#= ViewName #></title>
+</head>
+<body>
+<#
+	PushIndent("    ");
+}
+IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
+#>
+
+<style>
+<#
+foreach (PropertyMetadata property in properties) {
+#>
+	#ChangeThisIDFirst .<#=GetValueExpression(property)#>-css{
+		width:10%;
+	}
+<#	
+}
+#>
+</style>
+
+<div>
+<table id="ChangeThisIDFirst" class="table table-striped table-hover table-responsive custom-thead-back custom-thead-font custom-tbody custom-table-striped pt-table ">
+ <thead class="theme_thead custom-thead-back theme1_table custom-thead-font custom-tbody">
+	<tr>
+<#
+
+foreach (PropertyMetadata property in properties) {
+	if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+#>
+<#
+		// We do not want to show any association properties for which there is
+		// no associated foreign key.
+		if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
+			continue;
+		}
+#>
+		<th class="<#=GetValueExpression(property)#>-css">
+			@Html.DisplayNameFor(model => model.<#= GetValueExpression(property) #>)
+		</th>
+<#
+	}
+}
+#>
+		<th class="Action-css"></th>
+	</tr>
+	</thead>
+	<tbody>
+		@Html.Partial("", Model)
+	</tbody>
+
+</table>
+</div>
+<script>
+var changethisVar = function () {
+	$('#abcd').prtGrid({
+		url: "callURLLinkGoesHere",
+		dataLength: 50,
+		columns: [		
+		<#
+			foreach (PropertyMetadata property in properties) {
+		#>
+			{ type: 'text', name: '<#=GetValueExpression(property)#>', text: '<#=GetValueExpression(property)#>', sortable: { isSort: false, defaultSort: null } },
+
+		<#
+		}
+		#>
+		{ type: 'none', name: '', text: '', sortable: { isSort: false }} 
+		]
+	});
+};
+</script>
+
+
+<#
+// The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
+#>
+<#
+if(!IsPartialView && !IsLayoutPageSelected) {
+	ClearIndent();
+#>
+</body>
+</html>
+<#
+}
+#>
+<#@ include file="ModelMetadataFunctions.cs.include.t4" #>
